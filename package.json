@@ -1,13 +1,13 @@
 {
   "name": "node-starter",
-  "version": "0.0.0",
-  "main": "./dist/index.js",
+  "version": "1.0.0",
+  "main": "./biuld/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./s",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts",
     "postinstall": "tsc",
-    "production": "node ./dist/index.js"
+    "production": "node ./biuld/index.js"
   },
   "dependencies": {
     "express": "^4.18.1",

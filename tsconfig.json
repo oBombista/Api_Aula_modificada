@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "rootDir": "src",
     "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "outDir": "./dist",
+    "outDir": "biuld",
     "removeComments": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
