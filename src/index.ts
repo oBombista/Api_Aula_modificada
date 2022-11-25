@@ -12,6 +12,6 @@ app.use(statusRouter);
 app.use(errorHandler);
 app.use(authorizationRoute);
 
-app.listen(4000, () => {
+app.listen("apiaulamodificada-production.up.railway.app", () => {
   console.log('Estou Em FUNCIONAMENTO');
 });
