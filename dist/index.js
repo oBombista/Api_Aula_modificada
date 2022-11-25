@@ -8,6 +8,6 @@ const app = (0, express_1.default)();
 app.get('/status', (req, res, next) => {
     res.status(200).send({ foo: 'bar' });
 });
-app.listen(3000, () => {
+app.listen(5000, () => {
     console.log('Estou funcionando');
 });
