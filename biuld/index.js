@@ -14,6 +14,6 @@ app.use(users_routes_1.default);
 app.use(status_routes_1.default);
 app.use(error_handler_middlleware_1.default);
 app.use(authorization_routes_1.default);
-app.listen("apiaulamodificada-production.up.railway.app", () => {
+app.listen(4000, () => {
     console.log('Estou funcionando');
 });
