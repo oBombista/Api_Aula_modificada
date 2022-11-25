@@ -12,6 +12,6 @@ app.use(statusRouter);
 app.use(errorHandler);
 app.use(authorizationRoute);
 
-app.listen(5000, () => {
-  console.log('Estou funcionando');
+app.listen(4000, () => {
+  console.log('Estou Em FUNCIONAMENTO');
 });
