@@ -4,10 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const users_routes_1 = __importDefault(require("./routes/users.routes"));
+const status_routes_1 = __importDefault(require("./routes/status.routes"));
+const error_handler_middlleware_1 = __importDefault(require("./middllewares/error-handler.middlleware"));
+const authorization_routes_1 = __importDefault(require("./routes/authorization.routes"));
 const app = (0, express_1.default)();
-app.get('/status', (req, res, next) => {
-    res.status(200).send({ foo: 'bar' });
-});
+app.use(express_1.default.json());
+app.use(users_routes_1.default);
+app.use(status_routes_1.default);
+app.use(error_handler_middlleware_1.default);
+app.use(authorization_routes_1.default);
 app.listen(5000, () => {
     console.log('Estou funcionando');
 });
