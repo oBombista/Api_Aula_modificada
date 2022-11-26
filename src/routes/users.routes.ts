@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import userRepository  from '../repositories/user.repository';
+import userRepository  from '../models/repository';
 import DatabaseError from '../models/errors/database.error.models';
+import { request } from 'http';
 
 //forma de configurar rotas no express
 
@@ -13,11 +14,11 @@ usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction)
 
 
 usersRoute.get(
-  '/users/:uuid',
-  async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+  '/users/:userId',
+  async (req: Request<{ userId: string }>, res: Response, next: NextFunction) => {
     try {
-      const uuid = req.params.uuid;
-      const user = await userRepository.findById(uuid);
+      const userId = req.params.userId;
+      const user = await userRepository.findById(userId);
       res.status(200).send(user);
     } catch (error) {
     next(error);
@@ -28,10 +29,9 @@ usersRoute.get(
 
 usersRoute.post('/users', async (req: Request, res: Response, next: NextFunction) => {
   const newuser = req.body;
-  const uuid = await userRepository.create(newuser);
-  res.status(201).send(uuid);
+  const userId = await userRepository.create(newuser);
+  res.status(201).send(userId);
 });
-
 
 
 usersRoute.post('/login', async (req: Request, res: Response, next: NextFunction) =>{
@@ -41,16 +41,20 @@ usersRoute.post('/login', async (req: Request, res: Response, next: NextFunction
 });
 
 
-usersRoute.put('/users/:uuid', (req: Request<{ uuid: String }>, res: Response, next: NextFunction) => {
-  const uuid = req.params.uuid;
+usersRoute.put('/users/:userId', async (req: Request<{ userId: string }>, res: Response, next: NextFunction) => {
+  const userId = req.params.userId;
   const modifieduser = req.body;
-  modifieduser.uuid = uuid;
-  res.status(200).send(modifieduser);
+  modifieduser.userId = userId; 
+  await userRepository.update(modifieduser);
+  res.status(200).send(modifieduser); //pode ser o ao inves do modfieduser, vazio para segurança
 });
 
-usersRoute.delete('/users/:uuid', async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
-  const uuid = req.params.uuid;
-  await userRepository.remove(uuid)
+
+
+
+usersRoute.delete('/users/:userId', async (req: Request<{ userId: string }>, res: Response, next: NextFunction) => {
+  const userId = req.params.userId;
+  await userRepository.remove(userId)
   res.sendStatus(200);
 })
 

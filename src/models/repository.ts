@@ -1,4 +1,4 @@
-import db from "../db";
+import db from "../database/index";
 import User from "./users.model";
 import DatabaseError from "./errors/database.error.models";
  
