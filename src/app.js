@@ -3,6 +3,8 @@ import cors from "cors";
 import "./database";
 
 import routes from "./routes";
+const cors = require("cors");
+
 class App {
     constructor(){
         this.server = express();
